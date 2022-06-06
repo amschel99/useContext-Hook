@@ -1,16 +1,14 @@
-import React, {useState, useEffect} from 'react';
-
+import React, {useState,  createContext} from 'react';
+import Child from "./Child"
+ export const timeContext=createContext();
 const App=()=>{
   const[time, setTime]=useState(new Date())
-  useEffect(
-    ()=>{
-     const timer= setTimeout(()=>{setTime(new Date())},1000) 
-     return ()=>{clearTimeout(timer)}
-    },[time]
-  )
-  return <>
-  <h1>MADE BY AMSCHEL: {time.toLocaleTimeString()}</h1>
-  </>
+ 
+  return <timeContext.Provider value={{time, setTime}}>
+
+  <Child/>
+ 
+  </timeContext.Provider>
   
   
 }
